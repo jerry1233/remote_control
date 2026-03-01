@@ -1,18 +1,3 @@
-# 异步网络
-asyncio         # Python 自带，不用安装，但写在这里提醒
-ssl             # Python 自带
-
-# JSON协议处理
-json            # Python 标准库
-
-# 图像处理与屏幕抓取
-mss             # 高性能跨平台抓屏
-Pillow          # 图像编码/处理
-
-# 视频显示
-opencv-python   # 实时显示桌面流
-
-# 可选：提高性能或兼容 Windows
-numpy           # opencv-python 依赖
-
-# 可选：如果在 Python <3.9 或 pip 版本较旧
+mss
+opencv-python
+numpy

@@ -1,13 +1,12 @@
-import json
-
-def encode(msg):
-    return (json.dumps(msg) + "\n").encode()
-
-async def decode(reader):
-    try:
-        line = await reader.readline()
-        if not line:
-            return None
-        return json.loads(line.decode())
-    except Exception:
-        return None
+# 命令协议
+CMD_VIEW = "VIEW"
+CMD_STOP_VIEW = "STOP_VIEW"
+CMD_EXEC = "EXEC"
+CMD_EXEC_RESULT = "EXEC_RESULT"
+CMD_INFO = "INFO"
+CMD_INFO_RESULT = "INFO_RESULT"
+CMD_UPLOAD_TREE = "UPLOAD_TREE"
+CMD_UPLOAD_RESULT = "UPLOAD_RESULT"
+CMD_DOWNLOAD_RESULT = "DOWNLOAD_RESULT"
+CMD_UPLOAD = "UPLOAD"
+CMD_DOWNLOAD = "DOWNLOAD"

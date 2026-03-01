@@ -1,7 +1,12 @@
-class ClientState:
-    def __init__(self, client_id, writer, info):
-        self.client_id = client_id
-        self.writer = writer
-        self.info = info
-        self.last_seen = 0
-        self.active_tasks = 0
+# 保存客户端状态
+clients = {}        # client_id -> writer
+streaming = set()   # 正在推流的 client_id
+
+# client_id -> {"event": asyncio.Event, "ok": bool|None, "message": str}
+pending_uploads = {}
+
+# client_id -> {"event": asyncio.Event, "ok": bool|None, "message": str, "save_path": str}
+pending_downloads = {}
+
+# client_id -> {"event": asyncio.Event, "ok": bool|None, "message": str}
+pending_infos = {}

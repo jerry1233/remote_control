@@ -8,17 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/client_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/client_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/file_ops.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/file_ops.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/protocol.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/screen_stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/screen_stream.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/client/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/file_ops.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/protocol.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/protocol.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/screen_stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/screen_stream.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/server_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/state.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/state.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -2,22 +2,30 @@ import asyncio
 import json
 import os
 import socket
-from client import config, screen_stream, file_ops, system_info
+from client import config, screen_stream, file_ops, system_info, tls_utils
 from server import protocol
 
 client_id = socket.gethostname()
 
 async def connect_control():
+    ssl_ctx = tls_utils.build_client_ssl_context()
     while True:
+        writer = None
         try:
             reader, writer = await asyncio.open_connection(
                 config.SERVER_HOST,
-                config.CONTROL_PORT
+                config.CONTROL_PORT,
+                ssl=ssl_ctx,
             )
+            tls_utils.verify_server_fingerprint(writer)
             writer.write(f"{client_id}\n".encode())
             await writer.drain()
             return reader, writer
         except Exception:
+            try:
+                writer.close()
+            except Exception:
+                pass
             await asyncio.sleep(5)  # server 没启动时重试
 
 async def main():

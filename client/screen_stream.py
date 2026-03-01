@@ -1,16 +1,19 @@
 import asyncio
 import struct
 import cv2
-from client import utils, config
+from client import utils, config, tls_utils
 
 async def start_stream(client_id, stop_event):
     writer = None
+    ssl_ctx = tls_utils.build_client_ssl_context()
     while not stop_event.is_set():
         try:
             reader, writer = await asyncio.open_connection(
                 config.SERVER_HOST,
-                config.STREAM_PORT
+                config.STREAM_PORT,
+                ssl=ssl_ctx,
             )
+            tls_utils.verify_server_fingerprint(writer)
             writer.write(f"{client_id}\n".encode())
             await writer.drain()
             break

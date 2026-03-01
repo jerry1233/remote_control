@@ -2,10 +2,19 @@ import asyncio
 import json
 import os
 import shlex
+import ssl
 import tarfile
 import tempfile
 from server import config, protocol, state
 from server.screen_stream import handle_stream
+
+def _build_server_ssl_context():
+    if not config.TLS_ENABLED:
+        return None
+    ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    ctx.minimum_version = ssl.TLSVersion.TLSv1_2
+    ctx.load_cert_chain(config.TLS_CERT_FILE, config.TLS_KEY_FILE)
+    return ctx
 
 async def _send_upload_request(writer, local_path, remote_path):
     file_size = os.path.getsize(local_path)
@@ -289,6 +298,8 @@ async def handle_client(reader, writer):
         print(f"[-] {client_id} disconnected")
 
 async def stream_server():
+    ssl_ctx = _build_server_ssl_context()
+
     async def stream_accept(reader, writer):
         client_id = (await reader.readline()).decode().strip()
         await handle_stream(reader, client_id)
@@ -296,7 +307,8 @@ async def stream_server():
     server = await asyncio.start_server(
         stream_accept,
         config.SERVER_HOST,
-        config.STREAM_PORT
+        config.STREAM_PORT,
+        ssl=ssl_ctx,
     )
     async with server:
         await server.serve_forever()
@@ -452,10 +464,12 @@ async def cmd_loop():
                 print("未知命令，输入 help 查看用法。")
 
 async def main():
+    ssl_ctx = _build_server_ssl_context()
     server = await asyncio.start_server(
         handle_client,
         config.SERVER_HOST,
-        config.CONTROL_PORT
+        config.CONTROL_PORT,
+        ssl=ssl_ctx,
     )
     asyncio.create_task(stream_server())
     cmd_task = asyncio.create_task(cmd_loop())
